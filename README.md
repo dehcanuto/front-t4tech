@@ -1,4 +1,4 @@
-Front-end Test T4tech
+# Front-end Test T4tech
 
 ![Version](https://img.shields.io/badge/1.0.0-beta?label=version)
 ![PoweredBy](https://img.shields.io/badge/powered_by-Sua%20Obra%20Online-788bff)
@@ -26,13 +26,13 @@ Pode utilizar um starter para o layout.
 
 ### Tecnologias
 
-- [ ] Vue 3
 - [ ] TypeScript
-- [ ] Tailwind
 - [ ] Vite 
+- [ ] Vue 3
+- [ ] Tailwind
+- [ ] Tailwind Datatable.
 - [ ] Axios
 - [ ] Jest(testes)
-- [ ] Tailwind Datatable.
 
 ### Tarefas
 Utilizando a API pública da NBA balldontlie API, faça um CRUD simples:
