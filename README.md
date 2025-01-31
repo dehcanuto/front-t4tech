@@ -1,7 +1,7 @@
 # Front-end Test T4tech
 
 ![Version](https://img.shields.io/badge/1.0.0-beta?label=version)
-![PoweredBy](https://img.shields.io/badge/powered_by-Sua%20Obra%20Online-788bff)
+![PoweredBy](https://img.shields.io/badge/powered_by-T4tech-black)
 ![Vue3](https://img.shields.io/badge/Vue-3.5.13-42b883?style=flat-square&logo=vue.js&logoColor=42b883)
 ![Vite](https://img.shields.io/badge/Vite-6.0.11-9499ff?style=flat-square&logo=vite)
 ![Tailwind](https://img.shields.io/badge/Tailwind-3.4.17-38bdf8?style=flat-square&logo=tailwindcss&logoColor=38bdf8)
