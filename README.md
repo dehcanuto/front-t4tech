@@ -59,7 +59,7 @@ $ git clone git@github.com:dehcanuto/front-t4tech.git
 ### 2. Instale as dependências para o funcionamento do app
 
 ```bash
-$ yarn install
+$ yarn
 ```
 
 ## 🔥 Rode a aplicação
