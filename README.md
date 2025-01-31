@@ -26,13 +26,13 @@ Pode utilizar um starter para o layout.
 
 ### Tecnologias
 
-- [ ] TypeScript
-- [ ] Vite 
-- [ ] Vue 3
+- [x] TypeScript
+- [x] Vite 
+- [x] Vue 3
 - [ ] Tailwind
-- [ ] Tailwind Datatable.
+- [ ] Tailwind Datatable
 - [ ] Axios
-- [ ] Jest(testes)
+- [ ] Jest (testes)
 
 ### Tarefas
 Utilizando a API pública da NBA balldontlie API, faça um CRUD simples:
@@ -46,7 +46,7 @@ Utilizando a API pública da NBA balldontlie API, faça um CRUD simples:
 
 - [ ] Utilizar SQLITE para armazenar tudo localmente;
 - [ ] Criar simulações e padrões para mensagens de erro da API;
-- [ ] Utilizar DOCKER no projeto.
+- [x] Utilizar DOCKER no projeto.
 
 ## 🚀 Get Started!
 
@@ -71,6 +71,30 @@ yarn dev
 ```
 
 O projeto será apresentado através do link [http://localhost:3000](http://localhost:3000).
+
+## 🏗️ Rode com o docker
+
+### 2. Construa o container
+
+Execute os seguintes comandos para construir a aplicação:
+
+```bash
+docker build -t vue-nba-app .
+```
+
+### 2. Rodar o container
+
+Se estiver usando docker-compose:
+
+```bash
+docker-compose up --build
+```
+
+ou docker padrao:
+
+```bash
+docker run -p 5173:5173 vue-nba-app
+```
 
 ### Type-Check, compilação e minimização para produção
 
