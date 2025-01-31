@@ -29,7 +29,7 @@ Pode utilizar um starter para o layout.
 - [x] TypeScript
 - [x] Vite 
 - [x] Vue 3
-- [ ] Tailwind
+- [x] Tailwind
 - [ ] Tailwind Datatable
 - [ ] Axios
 - [ ] Jest (testes)
