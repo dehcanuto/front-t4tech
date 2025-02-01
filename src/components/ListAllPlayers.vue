@@ -6,10 +6,10 @@ import BaseDataTable from '@/components/BaseDataTable.vue'
 const { players, search, fetchData, sortPlayers, confirmDelete, isLoading } = usePlayerStore()
 
 const columns = ref([
-  { label: 'Nome', field: 'full_name', sortable: true },
-  { label: 'País', field: 'country', sortable: true },
-  { label: 'Time', field: 'team.full_name', sortable: true },
-  { label: 'Posição', field: 'position', sortable: true },
+  { label: 'Name', field: 'full_name', sortable: true },
+  { label: 'Country', field: 'country', sortable: true },
+  { label: 'Team', field: 'team.full_name', sortable: true },
+  { label: 'Position', field: 'position', sortable: true },
 ])
 
 onMounted(fetchData)

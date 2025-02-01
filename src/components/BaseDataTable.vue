@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { ChevronUpDownIcon } from '@heroicons/vue/24/outline'
 import { resolveNestedValue } from '@/utils/nestedValues'
 
 interface Column {
@@ -45,7 +46,12 @@ const props = defineProps({
             class="px-4 py-2 cursor-pointer"
             @click="col.sortable && onSort(col.field)"
           >
-            {{ col.label }}
+            <span class="flex items-center gap-2">
+              {{ col.label }}
+              <button v-if="col.sortable" type="button">
+                <ChevronUpDownIcon class="size-4"></ChevronUpDownIcon>
+              </button>
+            </span>
           </th>
           <th class="px-4 py-2 text-center">Ações</th>
         </tr>

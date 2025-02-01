@@ -40,7 +40,8 @@ Pode utilizar um starter para o layout.
 Utilizando a API pública da [NBA balldontlie API](https://www.balldontlie.io/), faça um CRUD simples:
 
 - [x] Exiba todos os jogadores dentro de uma datatable;
-  - [ ] Deve conter um campo de busca dinâmico para filtrar e ordenação de A-Z | Z-A;
+  - [ ] Deve conter um campo de busca dinâmico para filtrar;
+  - [x] Ordenação de A-Z | Z-A;
 - [x] Ao clicar no botão EDITAR na linha de qualquer jogador na datatable, exiba informações filtradas daquele jogador em uma modal ou nova página;
 - [ ] Utilize PROMISE para simular editar dados de qualquer jogador;
 - [ ] Utilize PROMISE para simular deletar um dos jogadores da datatable
@@ -49,7 +50,7 @@ Utilizando a API pública da [NBA balldontlie API](https://www.balldontlie.io/),
 ### Bônus
 
 - [ ] Utilizar SQLITE para armazenar tudo localmente;
-- [ ] Criar simulações e padrões para mensagens de erro da API;
+- [x] Criar simulações e padrões para mensagens de erro da API;
 - [x] Utilizar DOCKER no projeto.
 
 ## 🚀 Get Started!
