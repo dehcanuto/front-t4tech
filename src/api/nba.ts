@@ -8,6 +8,11 @@ class NbaService {
     return response.data.data
   }
 
+  async getPlayer(id: number): Promise<IPlayer> {
+    const response = await api.get(`/players/${id}`)
+    return response.data.data
+  }
+
   async updatePlayer(player: IPlayer): Promise<IPlayer> {
     return new Promise((resolve) => {
       setTimeout(() => resolve(player), 1000)

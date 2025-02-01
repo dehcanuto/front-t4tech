@@ -5,9 +5,22 @@ import type { IPlayer } from '@/models/player'
 export function usePlayerStore() {
   const players = ref<IPlayer[]>([])
   const search = ref<string>('')
+  const isLoading = ref<boolean>(false)
 
   const fetchData = async () => {
     players.value = await nbaService.fetchPlayers(search.value)
+  }
+
+  const getPlayer = async (id: number) => {
+    try {
+      isLoading.value = true
+      const response = await nbaService.getPlayer(id)
+      return response
+    } catch (error) {
+      console.log('error', error)
+    } finally {
+      isLoading.value = false
+    }
   }
 
   const sortPlayers = (order: 'asc' | 'desc') => {
@@ -25,5 +38,5 @@ export function usePlayerStore() {
     }
   }
 
-  return { players, search, fetchData, sortPlayers, confirmDelete }
+  return { players, search, isLoading, fetchData, getPlayer, sortPlayers, confirmDelete }
 }

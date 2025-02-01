@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { resolveNestedValue } from '@/utils/nestedValues'
 
 interface Column {
   label: string
@@ -25,13 +26,6 @@ const props = defineProps({
     required: true,
   },
 })
-
-const resolveNestedValue = (obj: any, path: string): any => {
-  if (path === 'full_name') {
-    return `${obj.first_name ?? ''} ${obj.last_name ?? ''}`.trim() || '-'
-  }
-  return path.split('.').reduce((acc, part) => acc && acc[part], obj) ?? '-'
-}
 </script>
 
 <template>
@@ -62,8 +56,10 @@ const resolveNestedValue = (obj: any, path: string): any => {
             {{ resolveNestedValue(item, col.field) }}
           </td>
           <td class="px-4 py-4 flex items-center justify-center space-x-2">
-            <button class="bg-blue-500 text-white px-3 py-1 rounded">Editar</button>
-            <button class="bg-red-500 text-white px-3 py-1 rounded" @click="onDelete(item.id)">
+            <RouterLink :to="`/player/${item.id}`" class="bg-blue-500 text-white px-3 py-1 rounded">
+              Editar
+            </RouterLink>
+            <button @click="onDelete(item.id)" class="bg-red-500 text-white px-3 py-1 rounded">
               Deletar
             </button>
           </td>
