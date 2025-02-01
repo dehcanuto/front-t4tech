@@ -15,3 +15,8 @@ export interface IPlayer {
   draft_number: number
   team: ITeam
 }
+
+export interface PlayerState {
+  favorites: IPlayer[]
+  isLoading: false
+}

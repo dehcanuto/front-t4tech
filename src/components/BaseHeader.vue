@@ -22,6 +22,11 @@
             >Home</RouterLink
           >
           <RouterLink
+            to="/favorites"
+            class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
+            >Favorites</RouterLink
+          >
+          <RouterLink
             to="/about"
             class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white"
             >About</RouterLink

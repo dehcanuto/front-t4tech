@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import { ChevronUpDownIcon } from '@heroicons/vue/24/outline'
+import { ChevronUpDownIcon, StarIcon } from '@heroicons/vue/24/outline'
 import { resolveNestedValue } from '@/utils/nestedValues'
 
 interface Column {
@@ -19,6 +19,10 @@ const props = defineProps({
     required: true,
   },
   onSort: {
+    type: Function,
+    required: true,
+  },
+  onFavorite: {
     type: Function,
     required: true,
   },
@@ -72,23 +76,38 @@ const props = defineProps({
             </td>
           </tr>
         </template>
-        <tr
-          v-for="item in data"
-          :key="item.id"
-          class="hover:bg-gray-700 border-b border-gray-800 py-10"
-        >
-          <td v-for="col in columns" :key="col.field" class="px-4 py-4 text-white">
-            {{ resolveNestedValue(item, col.field) }}
-          </td>
-          <td class="px-4 py-4 flex items-center justify-center space-x-2">
-            <RouterLink :to="`/player/${item.id}`" class="bg-blue-500 text-white px-3 py-1 rounded">
-              Editar
-            </RouterLink>
-            <button @click="onDelete(item.id)" class="bg-red-500 text-white px-3 py-1 rounded">
-              Deletar
-            </button>
-          </td>
-        </tr>
+        <template v-else-if="data && data.length > 0">
+          <tr
+            v-for="item in data"
+            :key="item.id"
+            class="hover:bg-gray-700 border-b border-gray-800 py-10"
+          >
+            <td v-for="col in columns" :key="col.field" class="px-4 py-4 text-white">
+              {{ resolveNestedValue(item, col.field) }}
+            </td>
+            <td class="px-4 py-4 flex items-center justify-center space-x-2">
+              <RouterLink
+                :to="`/player/${item.id}`"
+                class="bg-blue-500 text-white px-3 py-1 rounded"
+              >
+                Editar
+              </RouterLink>
+              <button @click="onDelete(item.id)" class="bg-red-500 text-white px-3 py-1 rounded">
+                Deletar
+              </button>
+              <button @click="onFavorite(item)" class="text-yellow-500 px-3 py-1 rounded">
+                <StarIcon class="size-4" />
+              </button>
+            </td>
+          </tr>
+        </template>
+        <template v-else>
+          <tr>
+            <td :colspan="columns.length + 1" class="px-4 py-4 text-white text-center">
+              No data available.
+            </td>
+          </tr>
+        </template>
       </tbody>
     </table>
     <div
