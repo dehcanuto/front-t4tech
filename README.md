@@ -39,10 +39,12 @@ Pode utilizar um starter para o layout.
 
 Utilizando a API pública da [NBA balldontlie API](https://www.balldontlie.io/), faça um CRUD simples:
 
-- [ ] Exiba todos os jogadores dentro de uma datatable (deve conter um campo de busca dinâmico para filtrar e ordenação de A-Z | Z-A);
+- [ ] Exiba todos os jogadores dentro de uma datatable;
+  - [ ] Deve conter um campo de busca dinâmico para filtrar e ordenação de A-Z | Z-A;
 - [ ] Ao clicar no botão EDITAR na linha de qualquer jogador na datatable, exiba informações filtradas daquele jogador em uma modal ou nova página;
 - [ ] Utilize PROMISE para simular editar dados de qualquer jogador;
-- [ ] Utilize PROMISE para simular deletar um dos jogadores da datatable (deve existir uma caixa de confirmação antes).
+- [ ] Utilize PROMISE para simular deletar um dos jogadores da datatable
+  - [ ] Deve existir uma caixa de confirmação antes.
 
 ### Bônus
 
@@ -64,19 +66,7 @@ $ git clone git@github.com:dehcanuto/front-t4tech.git
 $ yarn
 ```
 
-## 🔥 Rode a aplicação
-
-### Compila e usa Hot-Reload para ambiente de desenvolvimento
-
-```sh
-yarn dev
-```
-
-O projeto será apresentado através do link [http://localhost:3000](http://localhost:3000).
-
-## 🏗️ Rode com o docker
-
-### 2. Construa o container
+### 3. Construa o container no docker
 
 Execute os seguintes comandos para construir a aplicação:
 
@@ -84,9 +74,9 @@ Execute os seguintes comandos para construir a aplicação:
 docker build -t vue-nba-app .
 ```
 
-### 2. Rodar o container
+## 🔥 Rode a aplicação com o docker
 
-Se estiver usando docker-compose:
+Se estiver usando docker-compose/Docker desktop:
 
 ```sh
 docker-compose up --build
