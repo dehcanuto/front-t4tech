@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import { usePlayerStore } from '@/composables/usePlayerStore'
 import BaseDataTable from '@/components/BaseDataTable.vue'
 
-const { players, search, fetchData, sortPlayers, confirmDelete } = usePlayerStore()
+const { players, search, fetchData, sortPlayers, confirmDelete, isLoading } = usePlayerStore()
 
 const columns = ref([
   { label: 'Nome', field: 'full_name', sortable: true },
@@ -23,6 +23,7 @@ onMounted(fetchData)
         :columns="columns"
         :onSort="sortPlayers"
         :onDelete="confirmDelete"
+        :isLoading="isLoading"
       />
     </div>
   </div>

@@ -25,6 +25,10 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
 
@@ -47,6 +51,21 @@ const props = defineProps({
         </tr>
       </thead>
       <tbody class="text-sm font-normal text-gray-700">
+        <template v-if="isLoading">
+          <tr
+            v-for="item in [1, 2, 3, 4, 5, 6, 7, 8]"
+            :key="item"
+            class="animate-pulse border-b border-gray-800 py-10"
+          >
+            <td v-for="col in columns" :key="col.field" class="px-4 py-4">
+              <span class="flex h-4 w-32 bg-gray-700 rounded"></span>
+            </td>
+            <td class="flex px-4 py-4 gap-2">
+              <span class="flex h-4 w-1/2 bg-gray-700 rounded"></span>
+              <span class="flex h-4 w-1/2 bg-gray-700 rounded"></span>
+            </td>
+          </tr>
+        </template>
         <tr
           v-for="item in data"
           :key="item.id"

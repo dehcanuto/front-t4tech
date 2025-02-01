@@ -8,7 +8,14 @@ export function usePlayerStore() {
   const isLoading = ref<boolean>(false)
 
   const fetchData = async () => {
-    players.value = await nbaService.fetchPlayers(search.value)
+    try {
+      isLoading.value = true
+      players.value = await nbaService.fetchPlayers(search.value)
+    } catch (error) {
+      console.log('error', error)
+    } finally {
+      isLoading.value = false
+    }
   }
 
   const getPlayer = async (id: number) => {
