@@ -10,32 +10,34 @@
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-*  [NodeJS](https://nodejs.org/en/docs/) - Ambiente de execução JavaScript
-*  [Vue3](https://vuejs.org/) - Framework web with TypeScript
-*  [Vite](https://vite.dev/) - Framework web with TypeScript
-*  [Pinia](https://pinia.vuejs.org/) - Framework para gerenciamento de estado.
-*  [Tailwind CSS](https://tailwindcss.com/docs) - Framework para estilização
+- [NodeJS](https://nodejs.org/en/docs/) - Ambiente de execução JavaScript
+- [Vue3](https://vuejs.org/) - Framework web with TypeScript
+- [Vite](https://vite.dev/) - Framework web with TypeScript
+- [Pinia](https://pinia.vuejs.org/) - Framework para gerenciamento de estado.
+- [Tailwind CSS](https://tailwindcss.com/docs) - Framework para estilização
+- [Jest](https://jestjs.io/pt-BR/) - Framework de Testes.
 
 ## 🎯 Requisitos
 
-### Objetivo: 
+### Objetivo:
 
-Desenvolver um pequeno projeto do zero com responsividade para Desktop e Mobile. 
+Desenvolver um pequeno projeto do zero com responsividade para Desktop e Mobile.
 
 Pode utilizar um starter para o layout.
 
 ### Tecnologias
 
 - [x] TypeScript
-- [x] Vite 
+- [x] Vite
 - [x] Vue 3
 - [x] Tailwind
 - [ ] Tailwind Datatable
-- [ ] Axios
+- [x] Axios
 - [ ] Jest (testes)
 
 ### Tarefas
-Utilizando a API pública da NBA balldontlie API, faça um CRUD simples:
+
+Utilizando a API pública da [NBA balldontlie API](https://www.balldontlie.io/), faça um CRUD simples:
 
 - [ ] Exiba todos os jogadores dentro de uma datatable (deve conter um campo de busca dinâmico para filtrar e ordenação de A-Z | Z-A);
 - [ ] Ao clicar no botão EDITAR na linha de qualquer jogador na datatable, exiba informações filtradas daquele jogador em uma modal ou nova página;
