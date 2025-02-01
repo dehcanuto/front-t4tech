@@ -33,7 +33,7 @@ Pode utilizar um starter para o layout.
 - [x] Tailwind
 - [ ] Tailwind Datatable
 - [x] Axios
-- [ ] Jest (testes)
+- [x] Jest (testes)
 
 ### Tarefas
 
@@ -54,13 +54,13 @@ Utilizando a API pública da [NBA balldontlie API](https://www.balldontlie.io/),
 
 ### 1. Clone o repositório do projeto
 
-```bash
+```sh
 $ git clone git@github.com:dehcanuto/front-t4tech.git
 ```
 
 ### 2. Instale as dependências para o funcionamento do app
 
-```bash
+```sh
 $ yarn
 ```
 
@@ -80,7 +80,7 @@ O projeto será apresentado através do link [http://localhost:3000](http://loca
 
 Execute os seguintes comandos para construir a aplicação:
 
-```bash
+```sh
 docker build -t vue-nba-app .
 ```
 
@@ -88,13 +88,13 @@ docker build -t vue-nba-app .
 
 Se estiver usando docker-compose:
 
-```bash
+```sh
 docker-compose up --build
 ```
 
 ou docker padrao:
 
-```bash
+```sh
 docker run -p 5173:5173 vue-nba-app
 ```
 
@@ -106,21 +106,25 @@ yarn build
 
 ## 🧪 Tests
 
-### Executar testes unitários com [Vitest](https://vitest.dev/)
+### Executar testes unitários com [Jest](https://jestjs.io/)
 
 ```sh
-yarn test:unit
+yarn test
 ```
 
-### Execute testes de End-to-End com [Cypress](https://www.cypress.io/)
+ou use para hot-reload:
+
+```sh
+yarn test:watch
+```
+
+### Execute testes de End-to-End com [Cypress](https://www.cypress.io/) nativos do Vite
 
 ```sh
 yarn test:e2e:dev
 ```
 
-Isso executa os testes de end-to-end no servidor de desenvolvimento Vite.
-É muito mais rápido do que a compilação de produção.
-
+Isso executa os testes de end-to-end no servidor de desenvolvimento Vite. É muito mais rápido do que a compilação de produção.
 Mas ainda é recomendado testar a compilação de produção com `test:e2e` antes de implantar (por exemplo, em ambientes de CI):
 
 ```sh
