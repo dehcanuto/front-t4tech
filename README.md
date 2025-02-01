@@ -31,7 +31,7 @@ Pode utilizar um starter para o layout.
 - [x] Vite
 - [x] Vue 3
 - [x] Tailwind
-- [ ] Tailwind Datatable
+- [?] Tailwind Datatable
 - [x] Axios
 - [x] Jest (testes)
 
@@ -39,7 +39,7 @@ Pode utilizar um starter para o layout.
 
 Utilizando a API pública da [NBA balldontlie API](https://www.balldontlie.io/), faça um CRUD simples:
 
-- [ ] Exiba todos os jogadores dentro de uma datatable;
+- [x] Exiba todos os jogadores dentro de uma datatable;
   - [ ] Deve conter um campo de busca dinâmico para filtrar e ordenação de A-Z | Z-A;
 - [ ] Ao clicar no botão EDITAR na linha de qualquer jogador na datatable, exiba informações filtradas daquele jogador em uma modal ou nova página;
 - [ ] Utilize PROMISE para simular editar dados de qualquer jogador;
