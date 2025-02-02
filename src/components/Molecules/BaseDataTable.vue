@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref } from 'vue'
+import { defineProps, ref, computed } from 'vue'
 import { ChevronUpDownIcon, PencilSquareIcon, TrashIcon, StarIcon } from '@heroicons/vue/24/outline'
 import { resolveNestedValue } from '@/utils/nestedValues'
 import FavoriteButton from '@/components/Molecules/FavoriteButton.vue'
@@ -12,6 +12,14 @@ interface Column {
 }
 const showModal = ref(false)
 const selectedId = ref<number | null>(null)
+const searchTerm = ref('')
+
+const filteredData = computed(() => {
+  if (!searchTerm.value) return props.data
+  return props.data.filter((player) =>
+    player.first_name.toLowerCase().includes(searchTerm.value.toLowerCase()),
+  )
+})
 
 const openModal = (id: number) => {
   selectedId.value = id
@@ -58,6 +66,14 @@ const props = defineProps({
 
 <template>
   <div class="p-4">
+    <div class="mb-4">
+      <input
+        v-model="searchTerm"
+        type="text"
+        placeholder="Search player by name..."
+        class="w-full px-4 py-2 border border-gray-800 rounded bg-gray-900 text-white focus:outline-none"
+      />
+    </div>
     <table
       class="table-auto border-collapse container w-full m-auto border-2 border-gray-800 shadow rounded"
     >
@@ -95,8 +111,8 @@ const props = defineProps({
             </td>
           </tr>
         </template>
-        <template v-else-if="data && data.length > 0">
-          <tr v-for="item in data" :key="item.id" class="border-b border-gray-800 py-10">
+        <template v-else-if="filteredData && filteredData.length > 0">
+          <tr v-for="item in filteredData" :key="item.id" class="border-b border-gray-800 py-10">
             <td v-for="col in columns" :key="col.field" class="px-4 py-4 text-white">
               {{ resolveNestedValue(item, col.field) }}
             </td>
