@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import { ChevronUpDownIcon, StarIcon } from '@heroicons/vue/24/outline'
+import { ChevronUpDownIcon, PencilSquareIcon, TrashIcon, StarIcon } from '@heroicons/vue/24/outline'
 import { resolveNestedValue } from '@/utils/nestedValues'
+import FavoriteButton from '@/components/Molecules/FavoriteButton.vue'
 
 interface Column {
   label: string
@@ -77,27 +78,21 @@ const props = defineProps({
           </tr>
         </template>
         <template v-else-if="data && data.length > 0">
-          <tr
-            v-for="item in data"
-            :key="item.id"
-            class="hover:bg-gray-700 border-b border-gray-800 py-10"
-          >
+          <tr v-for="item in data" :key="item.id" class="border-b border-gray-800 py-10">
             <td v-for="col in columns" :key="col.field" class="px-4 py-4 text-white">
               {{ resolveNestedValue(item, col.field) }}
             </td>
-            <td class="px-4 py-4 flex items-center justify-center space-x-2">
+            <td class="px-4 py-4 flex items-center justify-center gap-1">
               <RouterLink
                 :to="`/player/${item.id}`"
-                class="bg-blue-500 text-white px-3 py-1 rounded"
+                class="text-blue-500 p-2 hover:bg-gray-800 rounded"
               >
-                Editar
+                <PencilSquareIcon class="size-4" />
               </RouterLink>
-              <button @click="onDelete(item.id)" class="bg-red-500 text-white px-3 py-1 rounded">
-                Deletar
+              <button @click="onDelete(item.id)" class="text-red-500 p-2 hover:bg-gray-800 rounded">
+                <TrashIcon class="size-4" />
               </button>
-              <button @click="onFavorite(item)" class="text-yellow-500 px-3 py-1 rounded">
-                <StarIcon class="size-4" />
-              </button>
+              <FavoriteButton :player="item" />
             </td>
           </tr>
         </template>

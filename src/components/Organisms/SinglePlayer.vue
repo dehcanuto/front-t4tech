@@ -6,8 +6,10 @@ import { ChevronLeftIcon, FingerPrintIcon, UsersIcon } from '@heroicons/vue/24/o
 import { resolveNestedValue } from '@/utils/nestedValues'
 import { usePlayerStore } from '@/composables/usePlayerStore'
 import type { IPlayer } from '@/models/player'
-import BaseCard from './BaseCard.vue'
-import SkeletonSinglePlayer from './Skeletons/SinglePlayer.vue'
+
+import BaseCard from '@/components/Atoms/BaseCard.vue'
+import FavoriteButton from '@/components/Molecules/FavoriteButton.vue'
+import SkeletonSinglePlayer from '@/components/Skeletons/SinglePlayer.vue'
 
 const route = useRoute()
 const { getPlayer, isLoading } = usePlayerStore()
@@ -16,7 +18,6 @@ const player = ref<IPlayer | null>(null)
 
 const fetchPlayer = async () => {
   player.value = await getPlayer(route.params.id)
-  console.log('player', player.value)
 }
 
 onMounted(() => {
@@ -31,9 +32,12 @@ onMounted(() => {
       <RouterLink to="/">
         <ChevronLeftIcon class="size-6" />
       </RouterLink>
-      <h1 v-if="player" class="text-2xl text-white">
-        {{ resolveNestedValue(player, 'full_name') }}
-      </h1>
+      <div class="flex items-center gap-2">
+        <h1 v-if="player" class="text-2xl text-white">
+          {{ resolveNestedValue(player, 'full_name') }}
+        </h1>
+        <FavoriteButton :player="player" />
+      </div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <BaseCard>

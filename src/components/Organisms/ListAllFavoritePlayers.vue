@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { usePlayersStore } from '@/stores/players'
-import BaseDataTable from '@/components/BaseDataTable.vue'
+import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
 
 const playerStore = usePlayersStore()
 

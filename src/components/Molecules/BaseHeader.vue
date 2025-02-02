@@ -1,9 +1,9 @@
 <template>
   <header class="flex items-center bg-gray-800 p-3 flex-wrap">
     <RouterLink to="/" class="p-2 mr-4 inline-flex items-center">
-      <span class="text-xl text-white font-bold uppercase tracking-wide">
-        T4Tech Frontend Challenge
-      </span>
+      <h1 class="text-xl text-white font-bold uppercase tracking-wide">
+        <span class="text-primary">T4Tech</span> Frontend Challenge
+      </h1>
     </RouterLink>
     <button
       class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"

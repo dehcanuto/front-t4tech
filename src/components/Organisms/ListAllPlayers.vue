@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { usePlayersStore } from '@/stores/players'
 import { usePlayerStore } from '@/composables/usePlayerStore'
-import BaseDataTable from '@/components/BaseDataTable.vue'
+import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
 
 const playerStore = usePlayersStore()
 const { players, search, fetchData, sortPlayers, confirmDelete, isLoading } = usePlayerStore()

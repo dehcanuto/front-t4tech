@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SinglePlayer from '../components/SinglePlayer.vue'
+import SinglePlayer from '../components/Organisms/SinglePlayer.vue'
 </script>
 
 <template>

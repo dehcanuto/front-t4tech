@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ListAllPlayers from '../components/ListAllPlayers.vue'
+import ListAllPlayers from '../components/Organisms/ListAllPlayers.vue'
 </script>
 
 <template>
