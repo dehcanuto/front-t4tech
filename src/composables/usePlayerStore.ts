@@ -3,14 +3,12 @@ import { useToast } from 'vue-toastification'
 
 import { nbaService } from '@/api/nba'
 import type { IPlayer } from '@/models/player'
-import { getValueNested } from '@/utils/nestedValues'
 
 const toast = useToast()
 
 export function usePlayerStore() {
   const players = ref<IPlayer[]>([])
   const search = ref<string>('')
-  const ascOrder = ref<boolean>(true)
   const isLoading = ref<boolean>(false)
   const isSaving = ref<boolean>(false)
   const isRemoving = ref<boolean>(false)
@@ -28,7 +26,7 @@ export function usePlayerStore() {
     }
   }
 
-  const getPlayer = async (id: number) => {
+  const getPlayer = async (id: number | string) => {
     try {
       isLoading.value = true
       const response = await nbaService.getPlayer(id)
@@ -40,26 +38,6 @@ export function usePlayerStore() {
     } finally {
       isLoading.value = false
     }
-  }
-
-  const sortPlayers = (column: 'full_name' | keyof IPlayer) => {
-    const columnFilter: keyof IPlayer = column === 'full_name' ? 'first_name' : column
-
-    players.value.sort((a, b) => {
-      const valueA = getValueNested(a, columnFilter)
-      const valueB = getValueNested(b, columnFilter)
-
-      if (typeof valueA === 'string' && typeof valueB === 'string') {
-        return ascOrder.value ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA)
-      }
-
-      if (typeof valueA === 'number' && typeof valueB === 'number') {
-        return ascOrder.value ? valueA - valueB : valueB - valueA
-      }
-
-      return 0
-    })
-    ascOrder.value = !ascOrder.value
   }
 
   const confirmDelete = async (id: number) => {
@@ -95,10 +73,8 @@ export function usePlayerStore() {
     isLoading,
     isRemoving,
     isSaving,
-    ascOrder,
     fetchData,
     getPlayer,
-    sortPlayers,
     confirmDelete,
     savePlayer,
   }

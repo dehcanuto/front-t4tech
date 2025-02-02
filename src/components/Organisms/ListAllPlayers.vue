@@ -3,12 +3,12 @@ import { onMounted, ref } from 'vue'
 import { usePlayersStore } from '@/stores/players'
 import { usePlayerStore } from '@/composables/usePlayerStore'
 import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
+import type { IColumn } from '@/models/table'
 
 const playerStore = usePlayersStore()
-const { players, search, fetchData, sortPlayers, confirmDelete, isLoading, isRemoving } =
-  usePlayerStore()
+const { players, fetchData, confirmDelete, isLoading, isRemoving } = usePlayerStore()
 
-const columns = ref([
+const columns = ref<IColumn[]>([
   { label: 'Name', field: 'full_name', sortable: true },
   { label: 'Country', field: 'country', sortable: true },
   { label: 'Team', field: 'team.full_name', sortable: true },
@@ -24,7 +24,6 @@ onMounted(fetchData)
       <BaseDataTable
         :data="players"
         :columns="columns"
-        :onSort="sortPlayers"
         :onFavorite="playerStore.setFavoritePlayer"
         :onDelete="confirmDelete"
         :isLoading="isLoading"

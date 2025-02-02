@@ -1,3 +1,3 @@
-import { vi } from 'vitest'
+import { jest } from '@jest/globals'
 
-global.fetch = vi.fn()
+global.fetch = jest.fn()

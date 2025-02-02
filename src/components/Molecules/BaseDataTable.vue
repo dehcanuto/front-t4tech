@@ -1,25 +1,20 @@
 <script setup lang="ts">
 import { defineProps, ref, computed } from 'vue'
-import { ChevronUpDownIcon, PencilSquareIcon, TrashIcon, StarIcon } from '@heroicons/vue/24/outline'
+import { ChevronUpDownIcon, PencilSquareIcon, TrashIcon } from '@heroicons/vue/24/outline'
 import { resolveNestedValue } from '@/utils/nestedValues'
+import { filterData, sortDataValues } from '@/utils/playerTable'
 import FavoriteButton from '@/components/Molecules/FavoriteButton.vue'
 import BaseModal from '@/components/Atoms/BaseModal.vue'
+import BaseLoadingIcon from '@/components/Atoms/BaseLoadingIcon.vue'
 
-interface Column {
-  label: string
-  field: string
-  sortable: boolean
-}
+import type { IPlayer } from '@/models/player'
+import type { IColumn } from '@/models/table'
+
 const showModal = ref(false)
 const selectedId = ref<number | null>(null)
 const searchTerm = ref('')
 
-const filteredData = computed(() => {
-  if (!searchTerm.value) return props.data
-  return props.data.filter((player) =>
-    player.first_name.toLowerCase().includes(searchTerm.value.toLowerCase()),
-  )
-})
+const filteredData = computed(() => filterData(props.data, searchTerm.value))
 
 const openModal = (id: number) => {
   selectedId.value = id
@@ -34,15 +29,11 @@ const confirmDelete = async () => {
 
 const props = defineProps({
   data: {
-    type: Array as () => any[],
+    type: Array as () => IPlayer[],
     required: true,
   },
   columns: {
-    type: Array as () => Column[],
-    required: true,
-  },
-  onSort: {
-    type: Function,
+    type: Array as () => IColumn[],
     required: true,
   },
   onFavorite: {
@@ -83,7 +74,7 @@ const props = defineProps({
             v-for="col in columns"
             :key="col.field"
             class="px-4 py-2 cursor-pointer"
-            @click="col.sortable && onSort(col.field)"
+            @click="col.sortable && sortDataValues(col.field, data)"
           >
             <span class="flex items-center gap-2">
               {{ col.label }}
@@ -199,28 +190,7 @@ const props = defineProps({
           class="px-4 py-2 bg-red-500 font-bold text-white uppercase rounded"
           :disabled="isLoading"
         >
-          <span v-if="isRemoving">
-            <svg
-              class="animate-spin m-auto h-5 w-5 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                class="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                stroke-width="4"
-              ></circle>
-              <path
-                class="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              ></path>
-            </svg>
-          </span>
+          <BaseLoadingIcon v-if="isRemoving" />
           <span v-else>Delete</span>
         </button>
       </div>

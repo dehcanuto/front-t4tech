@@ -8,7 +8,7 @@ class NbaService {
     return response.data.data
   }
 
-  async getPlayer(id: number): Promise<IPlayer> {
+  async getPlayer(id: number | string): Promise<IPlayer> {
     const response = await api.get(`/players/${id}`)
     return response.data.data
   }

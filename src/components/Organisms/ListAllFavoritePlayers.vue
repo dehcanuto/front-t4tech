@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { usePlayersStore } from '@/stores/players'
 import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
+import { usePlayerStore } from '@/composables/usePlayerStore'
+import type { IColumn } from '@/models/table'
 
 const playerStore = usePlayersStore()
+const { confirmDelete } = usePlayerStore()
 
-const columns = ref([
+const columns = ref<IColumn[]>([
   { label: 'Name', field: 'full_name', sortable: true },
   { label: 'Country', field: 'country', sortable: true },
   { label: 'Team', field: 'team.full_name', sortable: true },
@@ -19,10 +22,9 @@ const columns = ref([
       <BaseDataTable
         :data="playerStore.favorites"
         :columns="columns"
-        :onSort="sortPlayers"
         :onFavorite="playerStore.setFavoritePlayer"
         :onDelete="confirmDelete"
-        :isLoading="isLoading"
+        :isLoading="playerStore.isLoading"
       />
     </div>
   </div>

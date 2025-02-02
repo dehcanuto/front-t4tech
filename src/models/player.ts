@@ -1,18 +1,21 @@
 import type { ITeam } from './team'
 
-export interface IPlayer {
-  id: number
+export interface IPlayerEditForm {
   first_name: string
   last_name: string
-  position: string
+  country: string
   height: string
   weight: string
+  position: string
   jersey_number: string
   college: string
-  country: string
-  draft_year: number
-  draft_round: number
-  draft_number: number
+  draft_year: number | null
+  draft_round: number | null
+  draft_number: number | null
+}
+
+export interface IPlayer extends IPlayerEditForm {
+  id: number
   team: ITeam
 }
 
