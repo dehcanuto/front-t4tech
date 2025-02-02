@@ -61,7 +61,7 @@ const props = defineProps({
       <input
         v-model="searchTerm"
         type="text"
-        placeholder="Search player by name..."
+        placeholder="Search player by name, country, team and position..."
         class="w-full px-4 py-2 border border-gray-800 rounded bg-gray-900 text-white focus:outline-none"
       />
     </div>
