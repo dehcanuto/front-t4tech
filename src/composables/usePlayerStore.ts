@@ -12,6 +12,7 @@ export function usePlayerStore() {
   const search = ref<string>('')
   const ascOrder = ref<boolean>(true)
   const isLoading = ref<boolean>(false)
+  const isRemoving = ref<boolean>(false)
 
   const fetchData = async () => {
     try {
@@ -61,11 +62,29 @@ export function usePlayerStore() {
   }
 
   const confirmDelete = async (id: number) => {
-    if (confirm('Tem certeza que deseja excluir este jogador?')) {
+    try {
+      isRemoving.value = true
+
       await nbaService.deletePlayer(id)
+      toast.success('player removed successfully')
       fetchData()
+    } catch (error) {
+      toast.error('Something went wrong. Try again later')
+    } finally {
+      isRemoving.value = false
+      return false
     }
   }
 
-  return { players, search, isLoading, ascOrder, fetchData, getPlayer, sortPlayers, confirmDelete }
+  return {
+    players,
+    search,
+    isLoading,
+    isRemoving,
+    ascOrder,
+    fetchData,
+    getPlayer,
+    sortPlayers,
+    confirmDelete,
+  }
 }

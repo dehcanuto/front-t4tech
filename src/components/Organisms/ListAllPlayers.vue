@@ -5,7 +5,8 @@ import { usePlayerStore } from '@/composables/usePlayerStore'
 import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
 
 const playerStore = usePlayersStore()
-const { players, search, fetchData, sortPlayers, confirmDelete, isLoading } = usePlayerStore()
+const { players, search, fetchData, sortPlayers, confirmDelete, isLoading, isRemoving } =
+  usePlayerStore()
 
 const columns = ref([
   { label: 'Name', field: 'full_name', sortable: true },
@@ -27,6 +28,7 @@ onMounted(fetchData)
         :onFavorite="playerStore.setFavoritePlayer"
         :onDelete="confirmDelete"
         :isLoading="isLoading"
+        :isRemoving="isRemoving"
       />
     </div>
   </div>

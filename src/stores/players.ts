@@ -22,7 +22,6 @@ export const usePlayersStore = defineStore('players', {
       }
     },
     isFavorite(item: IPlayer) {
-      console.log('this.favorites.length', this.favorites.length)
       if (this.favorites.length === 0) return false
       const exists = this.favorites.some((player) => player.id === item.id)
       return exists

@@ -1,13 +1,27 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, ref } from 'vue'
 import { ChevronUpDownIcon, PencilSquareIcon, TrashIcon, StarIcon } from '@heroicons/vue/24/outline'
 import { resolveNestedValue } from '@/utils/nestedValues'
 import FavoriteButton from '@/components/Molecules/FavoriteButton.vue'
+import BaseModal from '@/components/Atoms/BaseModal.vue'
 
 interface Column {
   label: string
   field: string
   sortable: boolean
+}
+const showModal = ref(false)
+const selectedId = ref<number | null>(null)
+
+const openModal = (id: number) => {
+  selectedId.value = id
+  showModal.value = true
+}
+
+const confirmDelete = async () => {
+  if (selectedId.value !== null) {
+    showModal.value = await props.onDelete(selectedId.value)
+  }
 }
 
 const props = defineProps({
@@ -32,6 +46,10 @@ const props = defineProps({
     required: true,
   },
   isLoading: {
+    type: Boolean,
+    default: false,
+  },
+  isRemoving: {
     type: Boolean,
     default: false,
   },
@@ -89,7 +107,10 @@ const props = defineProps({
               >
                 <PencilSquareIcon class="size-4" />
               </RouterLink>
-              <button @click="onDelete(item.id)" class="text-red-500 p-2 hover:bg-gray-800 rounded">
+              <button
+                @click="openModal(item.id)"
+                class="text-red-500 p-2 hover:bg-gray-800 rounded"
+              >
                 <TrashIcon class="size-4" />
               </button>
               <FavoriteButton :player="item" />
@@ -147,5 +168,46 @@ const props = defineProps({
         />
       </svg>
     </div>
+    <BaseModal v-if="showModal">
+      <h2 class="text-lg text-white font-bold">Are you sure you want to delete?</h2>
+      <p>This action will permanently remove the player.</p>
+      <div class="flex justify-end mt-8 gap-2">
+        <button
+          @click="showModal = false"
+          class="px-4 py-2 bg-gray-500 text-white font-bold uppercase rounded"
+        >
+          Cancel
+        </button>
+        <button
+          @click="confirmDelete"
+          class="px-4 py-2 bg-red-500 font-bold text-white uppercase rounded"
+          :disabled="isLoading"
+        >
+          <span v-if="isRemoving">
+            <svg
+              class="animate-spin m-auto h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </span>
+          <span v-else>Delete</span>
+        </button>
+      </div>
+    </BaseModal>
   </div>
 </template>
