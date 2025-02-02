@@ -5,7 +5,7 @@ import type { InputTypeHTMLAttribute } from 'vue'
 defineProps<{
   label: string
   type?: InputTypeHTMLAttribute
-  modelValue: string | number
+  modelValue: string | number | null
   required?: boolean
   placeholder?: string
   disabled?: boolean

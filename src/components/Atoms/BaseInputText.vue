@@ -4,7 +4,7 @@ import type { InputTypeHTMLAttribute } from 'vue'
 withDefaults(
   defineProps<{
     type?: InputTypeHTMLAttribute
-    modelValue: string | number
+    modelValue: string | number | null
     placeholder?: string
     disabled?: boolean
     error?: boolean
