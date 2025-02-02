@@ -20,6 +20,7 @@ export interface IPlayer extends IPlayerEditForm {
 }
 
 export interface PlayerState {
+  players: IPlayer[]
   favorites: IPlayer[]
   isLoading: false
 }

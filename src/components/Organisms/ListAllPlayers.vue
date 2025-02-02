@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { usePlayersStore } from '@/stores/players'
 import { usePlayer } from '@/composables/usePlayer'
 import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
 import type { IColumn } from '@/models/table'
+import type { IPlayer } from '@/models/player'
 
-const playerStore = usePlayersStore()
-const { players, fetchData, confirmDelete, isLoading, isRemoving } = usePlayer()
+const players = ref<IPlayer[]>([])
+
+const { setPlayers, setFavoritePlayer } = usePlayersStore()
+const { fetchData, confirmDelete, isLoading, isRemoving } = usePlayer()
 
 const columns = ref<IColumn[]>([
   { label: 'Name', field: 'full_name', sortable: true },
@@ -15,7 +18,12 @@ const columns = ref<IColumn[]>([
   { label: 'Position', field: 'position', sortable: true },
 ])
 
-onMounted(fetchData)
+onMounted(async () => {
+  const playersData = await fetchData()
+  if (playersData) players.value = playersData
+})
+
+watch(players, (update) => setPlayers(update))
 </script>
 
 <template>
@@ -24,7 +32,7 @@ onMounted(fetchData)
       <BaseDataTable
         :data="players"
         :columns="columns"
-        :onFavorite="playerStore.setFavoritePlayer"
+        :onFavorite="setFavoritePlayer"
         :onDelete="confirmDelete"
         :isLoading="isLoading"
         :isRemoving="isRemoving"

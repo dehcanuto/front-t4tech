@@ -6,10 +6,15 @@ const toast = useToast()
 
 export const usePlayersStore = defineStore('players', {
   state: (): PlayerState => ({
+    players: [],
     favorites: [],
     isLoading: false,
   }),
   actions: {
+    setPlayers(item: IPlayer[]) {
+      console.log('setPlayers', item)
+      this.players = item
+    },
     setFavoritePlayer(item: IPlayer) {
       const playerIndex = this.favorites.findIndex((player) => player.id === item.id)
 

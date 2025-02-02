@@ -31,7 +31,7 @@ Pode utilizar um starter para o layout.
 - [x] Vite
 - [x] Vue 3
 - [x] Tailwind
-- [?] Tailwind Datatable
+- [x] Tailwind Datatable
 - [x] Axios
 - [x] Jest (testes)
 

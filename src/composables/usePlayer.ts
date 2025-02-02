@@ -2,22 +2,21 @@ import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
 
 import { nbaService } from '@/api/nba'
-import type { IPlayer, IPlayerEditForm } from '@/models/player'
+import type { IPlayerEditForm } from '@/models/player'
 
 const toast = useToast()
 
 export function usePlayer() {
-  const players = ref<IPlayer[]>([])
-  const search = ref<string>('')
   const isLoading = ref<boolean>(false)
   const isSaving = ref<boolean>(false)
   const isRemoving = ref<boolean>(false)
 
-  const fetchData = async () => {
+  const fetchData = async (pagination: number = 0) => {
     try {
       isLoading.value = true
-      players.value = await nbaService.fetchPlayers(search.value)
+      const response = await nbaService.fetchPlayers(pagination)
       toast.success('Players loaded successfully')
+      return response
     } catch (error) {
       console.log('error', error)
       toast.error('Something went wrong. Try again later')
@@ -68,8 +67,6 @@ export function usePlayer() {
   }
 
   return {
-    players,
-    search,
     isLoading,
     isRemoving,
     isSaving,

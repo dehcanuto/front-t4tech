@@ -2,8 +2,8 @@ import api from './api'
 import type { IPlayer, IPlayerEditForm } from '@/models/player'
 
 class NbaService {
-  async fetchPlayers(search: string = ''): Promise<IPlayer[]> {
-    const params = search ? { search } : {}
+  async fetchPlayers(pagination: number = 0): Promise<IPlayer[]> {
+    const params = { cursor: pagination * 25, per_page: 25 }
     const response = await api.get('/players', { params })
     return response.data.data
   }
