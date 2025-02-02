@@ -12,6 +12,7 @@ export function usePlayerStore() {
   const search = ref<string>('')
   const ascOrder = ref<boolean>(true)
   const isLoading = ref<boolean>(false)
+  const isSaving = ref<boolean>(false)
   const isRemoving = ref<boolean>(false)
 
   const fetchData = async () => {
@@ -76,15 +77,29 @@ export function usePlayerStore() {
     }
   }
 
+  const savePlayer = async (form: any) => {
+    try {
+      isSaving.value = true
+      await nbaService.updatePlayer(form)
+      toast.success('player edited successfully')
+    } catch (error) {
+      toast.error('Something went wrong. Try again later')
+    } finally {
+      isSaving.value = false
+    }
+  }
+
   return {
     players,
     search,
     isLoading,
     isRemoving,
+    isSaving,
     ascOrder,
     fetchData,
     getPlayer,
     sortPlayers,
     confirmDelete,
+    savePlayer,
   }
 }
