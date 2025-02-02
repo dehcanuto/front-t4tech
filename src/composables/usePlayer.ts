@@ -13,6 +13,7 @@ export function usePlayer() {
 
   const fetchData = async (pagination: number = 0) => {
     try {
+      toast('Loading Players...')
       isLoading.value = true
       const response = await nbaService.fetchPlayers(pagination)
       toast.success('Players loaded successfully')
