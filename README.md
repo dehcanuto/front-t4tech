@@ -43,7 +43,7 @@ Utilizando a API pública da [NBA balldontlie API](https://www.balldontlie.io/),
   - [x] Deve conter um campo de busca dinâmico para filtrar;
   - [x] Ordenação de A-Z | Z-A;
 - [x] Ao clicar no botão EDITAR na linha de qualquer jogador na datatable, exiba informações filtradas daquele jogador em uma modal ou nova página;
-- [ ] Utilize PROMISE para simular editar dados de qualquer jogador;
+- [x] Utilize PROMISE para simular editar dados de qualquer jogador;
 - [x] Utilize PROMISE para simular deletar um dos jogadores da datatable
   - [x] Deve existir uma caixa de confirmação antes.
 
