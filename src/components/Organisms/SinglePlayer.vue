@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import { ChevronLeftIcon, FingerPrintIcon, UsersIcon } from '@heroicons/vue/24/outline'
 
 import { resolveNestedValue } from '@/utils/nestedValues'
-import { usePlayerStore } from '@/composables/usePlayerStore'
+import { usePlayer } from '@/composables/usePlayer'
 import type { IPlayer, IPlayerEditForm } from '@/models/player'
 
 import BaseLoadingIcon from '@/components/Atoms/BaseLoadingIcon.vue'
@@ -14,7 +14,7 @@ import FormField from '@/components/Molecules/FormField.vue'
 import SkeletonSinglePlayer from '@/components/Skeletons/SinglePlayer.vue'
 
 const route = useRoute()
-const { getPlayer, savePlayer, isLoading, isSaving } = usePlayerStore()
+const { getPlayer, savePlayer, isLoading, isSaving } = usePlayer()
 
 const player = ref<IPlayer | null>(null)
 const playerForm = ref<HTMLFormElement | null>(null)

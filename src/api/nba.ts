@@ -1,5 +1,5 @@
 import api from './api'
-import type { IPlayer } from '@/models/player'
+import type { IPlayer, IPlayerEditForm } from '@/models/player'
 
 class NbaService {
   async fetchPlayers(search: string = ''): Promise<IPlayer[]> {
@@ -13,7 +13,7 @@ class NbaService {
     return response.data.data
   }
 
-  async updatePlayer(player: IPlayer): Promise<IPlayer> {
+  async updatePlayer(player: IPlayerEditForm): Promise<IPlayerEditForm> {
     return new Promise((resolve) => {
       setTimeout(() => resolve(player), 1000)
     })

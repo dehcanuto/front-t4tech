@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { usePlayersStore } from '@/stores/players'
-import { usePlayerStore } from '@/composables/usePlayerStore'
+import { usePlayer } from '@/composables/usePlayer'
 import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
 import type { IColumn } from '@/models/table'
 
 const playerStore = usePlayersStore()
-const { players, fetchData, confirmDelete, isLoading, isRemoving } = usePlayerStore()
+const { players, fetchData, confirmDelete, isLoading, isRemoving } = usePlayer()
 
 const columns = ref<IColumn[]>([
   { label: 'Name', field: 'full_name', sortable: true },

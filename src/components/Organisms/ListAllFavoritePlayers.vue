@@ -2,11 +2,11 @@
 import { ref } from 'vue'
 import { usePlayersStore } from '@/stores/players'
 import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
-import { usePlayerStore } from '@/composables/usePlayerStore'
+import { usePlayer } from '@/composables/usePlayer'
 import type { IColumn } from '@/models/table'
 
 const playerStore = usePlayersStore()
-const { confirmDelete } = usePlayerStore()
+const { confirmDelete } = usePlayer()
 
 const columns = ref<IColumn[]>([
   { label: 'Name', field: 'full_name', sortable: true },

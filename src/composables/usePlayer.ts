@@ -2,11 +2,11 @@ import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
 
 import { nbaService } from '@/api/nba'
-import type { IPlayer } from '@/models/player'
+import type { IPlayer, IPlayerEditForm } from '@/models/player'
 
 const toast = useToast()
 
-export function usePlayerStore() {
+export function usePlayer() {
   const players = ref<IPlayer[]>([])
   const search = ref<string>('')
   const isLoading = ref<boolean>(false)
@@ -55,7 +55,7 @@ export function usePlayerStore() {
     }
   }
 
-  const savePlayer = async (form: any) => {
+  const savePlayer = async (form: IPlayerEditForm) => {
     try {
       isSaving.value = true
       await nbaService.updatePlayer(form)
