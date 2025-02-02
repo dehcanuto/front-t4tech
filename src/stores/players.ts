@@ -12,7 +12,6 @@ export const usePlayersStore = defineStore('players', {
   }),
   actions: {
     setPlayers(item: IPlayer[]) {
-      console.log('setPlayers', item)
       this.players = item
     },
     setFavoritePlayer(item: IPlayer) {
