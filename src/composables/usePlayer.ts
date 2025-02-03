@@ -42,9 +42,25 @@ export function usePlayer() {
 
   const updatePlayer = async (player: IPlayer) => {
     try {
+      toast('updating player...')
       isLoading.value = true
       const response = await nbaService.updatePlayer(player)
       toast.success('Player updated successfully')
+      return response
+    } catch (error) {
+      console.log('error', error)
+      toast.error('Something went wrong. Try again later')
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  const removePlayer = async (playerId: number) => {
+    try {
+      toast('removing player...')
+      isLoading.value = true
+      const response = await nbaService.removePlayer(playerId)
+      toast.success('Player removed successfully')
       return response
     } catch (error) {
       console.log('error', error)
@@ -61,5 +77,6 @@ export function usePlayer() {
     fetchData,
     getPlayer,
     updatePlayer,
+    removePlayer,
   }
 }

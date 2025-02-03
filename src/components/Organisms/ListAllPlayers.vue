@@ -6,10 +6,10 @@ import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
 import type { IColumn } from '@/models/table'
 import type { IPlayer } from '@/models/player'
 
-const { players, setPlayers, removePlayer, setFavoritePlayer } = usePlayersStore()
-const { fetchData, isLoading, isRemoving } = usePlayer()
+const { setFavoritePlayer } = usePlayersStore()
+const { fetchData, removePlayer, isLoading, isRemoving } = usePlayer()
 
-const dataPlayers = ref<IPlayer[]>(players)
+const dataPlayers = ref<IPlayer[]>()
 
 const columns = ref<IColumn[]>([
   { label: 'Name', field: 'full_name', sortable: true },
@@ -24,19 +24,11 @@ const handleDelete = async (playerId: number) => {
 }
 
 onMounted(async () => {
-  if (dataPlayers.value.length === 0) {
+  if (!dataPlayers.value || dataPlayers.value?.length === 0) {
     const response = await fetchData()
     if (response) dataPlayers.value = response
   }
 })
-
-watch(
-  dataPlayers,
-  (newPlayers) => {
-    setPlayers([...newPlayers])
-  },
-  { deep: true },
-)
 </script>
 
 <template>

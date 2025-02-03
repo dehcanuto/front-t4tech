@@ -5,6 +5,7 @@ import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
 import { usePlayer } from '@/composables/usePlayer'
 import type { IColumn } from '@/models/table'
 
+const { removePlayer } = usePlayer()
 const playerStore = usePlayersStore()
 
 const columns = ref<IColumn[]>([
@@ -22,7 +23,7 @@ const columns = ref<IColumn[]>([
         :data="playerStore.favorites"
         :columns="columns"
         :onFavorite="playerStore.setFavoritePlayer"
-        :onDelete="playerStore.removePlayer"
+        :onDelete="removePlayer"
         :isLoading="playerStore.isLoading"
       />
     </div>
