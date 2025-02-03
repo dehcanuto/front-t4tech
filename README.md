@@ -61,13 +61,7 @@ Utilizando a API pública da 🏀 [NBA balldontlie API](https://www.balldontlie.
 $ git clone git@github.com:dehcanuto/front-t4tech.git
 ```
 
-### 2. Instale as dependências para o funcionamento do app
-
-```sh
-$ yarn
-```
-
-### 3. Construa o container no docker
+### 2. Construa o container no docker
 
 Execute os seguintes comandos para construir a aplicação:
 
@@ -89,10 +83,40 @@ ou docker padrao:
 docker run -p 5173:5173 vue-nba-app
 ```
 
-### Type-Check, compilação e minimização para produção
+## Caso nao queira rodar com docker
+
+### 1. Acesse a pasta do backend
 
 ```sh
-yarn build
+cd backend
+```
+
+### 2. Instale as dependencias do backend (caso nao tenha feito)
+
+```sh
+yarn install
+```
+
+### 2. Rode a aplicação
+
+```sh
+yarn dev
+```
+
+### 3. Instale as dependencias do front (caso nao tenha feito)
+
+```sh
+## caso ainda esteja na pasta backend, so voltar com esse comando
+cd ..
+
+# E agora instale as dependencias.
+yarn install
+```
+
+### 4. Rode a aplicação
+
+```sh
+yarn dev
 ```
 
 ## 🧪 Tests

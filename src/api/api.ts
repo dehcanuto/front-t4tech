@@ -1,21 +1,21 @@
 import axios from 'axios'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-api.interceptors.request.use(
-  (config) => {
-    config.headers!.Authorization = `${import.meta.env.VITE_API_KEY}`
-    return config
-  },
+api.interceptors.response.use(
+  (response) => response,
   (error) => {
-    Promise.reject(error)
-    console.log('error api', error)
-    return error.data.message
+    console.log('Error in API response:', error)
+    toast.error(`Error: ${error?.response?.data?.message || error.message}`)
+    return Promise.reject(error)
   },
 )
 

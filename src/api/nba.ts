@@ -1,6 +1,6 @@
 import axios from 'axios'
 import api from './api'
-import type { IPlayer, IPlayerEditForm } from '@/models/player'
+import type { IPlayer } from '@/models/player'
 
 class NbaService {
   async initPlayers(pagination: number = 0): Promise<IPlayer[]> {
