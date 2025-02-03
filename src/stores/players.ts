@@ -21,8 +21,14 @@ export const usePlayersStore = defineStore('players', {
         this.favorites.push(item)
         toast.success(`Player ${item.first_name} added to favorites successfully`)
       } else {
+        this.removeFavoritePlayer(item.id)
+      }
+    },
+    removeFavoritePlayer(playerId: number) {
+      const playerIndex = this.favorites.findIndex((player) => player.id === playerId)
+      if (playerIndex > -1 || this.favorites.length > 0) {
         this.favorites.splice(playerIndex, 1)
-        toast.info(`Player ${item.first_name} removed from favorites.`)
+        toast.info(`Player removed from favorites.`)
       }
     },
     isFavorite(item: IPlayer) {
@@ -49,6 +55,7 @@ export const usePlayersStore = defineStore('players', {
         toast('removing player...')
         const updatedPlayers = this.players.filter((item) => item.id !== playerId)
         this.setPlayers(updatedPlayers)
+        this.removeFavoritePlayer(playerId)
         // simulates waiting for saving with the database
         setTimeout(() => {
           toast.success('player removed successfully')
