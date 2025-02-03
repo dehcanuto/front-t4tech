@@ -24,8 +24,10 @@ const handleDelete = async (playerId) => {
 }
 
 onMounted(async () => {
-  const playersData = await fetchData()
-  if (playersData) players.value = playersData
+  if (players.value.length === 0) {
+    const playersData = await fetchData()
+    if (playersData) players.value = playersData
+  }
 })
 
 watch(players, (update) => setPlayers(update))

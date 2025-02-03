@@ -12,18 +12,6 @@ class NbaService {
     const response = await api.get(`/players/${id}`)
     return response.data.data
   }
-
-  async updatePlayer(player: IPlayerEditForm): Promise<IPlayerEditForm> {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(player), 1000)
-    })
-  }
-
-  async deletePlayer(playerId: number): Promise<number> {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(playerId), 1000)
-    })
-  }
 }
 
 export const nbaService = new NbaService()

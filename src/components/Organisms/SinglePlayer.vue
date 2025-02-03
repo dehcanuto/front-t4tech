@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { ChevronLeftIcon, FingerPrintIcon, UsersIcon } from '@heroicons/vue/24/outline'
 
 import { resolveNestedValue } from '@/utils/nestedValues'
+import { usePlayersStore } from '@/stores/players'
 import { usePlayer } from '@/composables/usePlayer'
 import type { IPlayer, IPlayerEditForm } from '@/models/player'
 
@@ -14,7 +15,8 @@ import FormField from '@/components/Molecules/FormField.vue'
 import SkeletonSinglePlayer from '@/components/Skeletons/SinglePlayer.vue'
 
 const route = useRoute()
-const { getPlayer, savePlayer, isLoading, isSaving } = usePlayer()
+const { updatePlayer } = usePlayersStore()
+const { getPlayer, isLoading, isSaving } = usePlayer()
 
 const player = ref<IPlayer | null>(null)
 const playerForm = ref<HTMLFormElement | null>(null)
@@ -59,8 +61,8 @@ const fetchPlayer = async () => {
   form.draft_number = res.draft_number ?? null
 }
 
-const handleSubmit = () => {
-  savePlayer(form)
+const handleSubmit = async () => {
+  await updatePlayer(form)
 }
 
 onMounted(() => {
@@ -102,21 +104,21 @@ onMounted(() => {
           <h2 class="text-lg font-bold text-white">Player infos</h2>
         </div>
         <form @submit.prevent="handleSubmit" ref="playerForm" class="flex flex-col gap-4">
-          <FormField label="First Name" v-model="form.first_name" placeholder="First Name" />
-          <FormField label="Last Name" v-model="form.last_name" placeholder="Last Name" />
-          <FormField label="Country" v-model="form.country" placeholder="Country" />
-          <FormField label="Height" v-model="form.height" placeholder="Height" />
-          <FormField label="Weight" v-model="form.weight" placeholder="Weight" />
-          <FormField label="Position" v-model="form.position" placeholder="Position" />
+          <FormField label="First Name" v-model="form.first_name" />
+          <FormField label="Last Name" v-model="form.last_name" />
+          <FormField label="Country" v-model="form.country" />
+          <FormField label="Height" v-model="form.height" />
+          <FormField label="Weight" v-model="form.weight" />
+          <FormField label="Position" v-model="form.position" />
           <FormField
             label="Jersey Number"
             v-model="form.jersey_number"
             placeholder="Jersey Number"
           />
-          <FormField label="College" v-model="form.college" placeholder="College" />
-          <FormField label="Draft Year" v-model="form.draft_year" placeholder="Draft Year" />
-          <FormField label="Draft Round" v-model="form.draft_round" placeholder="Draft Round" />
-          <FormField label="Draft Number" v-model="form.draft_number" placeholder="Draft Number" />
+          <FormField label="College" v-model="form.college" />
+          <FormField label="Draft Year" v-model="form.draft_year" />
+          <FormField label="Draft Round" v-model="form.draft_round" />
+          <FormField label="Draft Number" v-model="form.draft_number" />
         </form>
       </BaseCard>
       <BaseCard>

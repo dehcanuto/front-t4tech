@@ -2,7 +2,6 @@ import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
 
 import { nbaService } from '@/api/nba'
-import type { IPlayerEditForm } from '@/models/player'
 
 const toast = useToast()
 
@@ -40,40 +39,11 @@ export function usePlayer() {
     }
   }
 
-  const confirmDelete = async (id: number) => {
-    try {
-      isRemoving.value = true
-
-      await nbaService.deletePlayer(id)
-      toast.success('player removed successfully')
-      fetchData()
-    } catch (error) {
-      toast.error('Something went wrong. Try again later')
-    } finally {
-      isRemoving.value = false
-      return false
-    }
-  }
-
-  const savePlayer = async (form: IPlayerEditForm) => {
-    try {
-      isSaving.value = true
-      await nbaService.updatePlayer(form)
-      toast.success('player edited successfully')
-    } catch (error) {
-      toast.error('Something went wrong. Try again later')
-    } finally {
-      isSaving.value = false
-    }
-  }
-
   return {
     isLoading,
     isRemoving,
     isSaving,
     fetchData,
     getPlayer,
-    confirmDelete,
-    savePlayer,
   }
 }

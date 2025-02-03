@@ -6,7 +6,6 @@ import { usePlayer } from '@/composables/usePlayer'
 import type { IColumn } from '@/models/table'
 
 const playerStore = usePlayersStore()
-const { confirmDelete } = usePlayer()
 
 const columns = ref<IColumn[]>([
   { label: 'Name', field: 'full_name', sortable: true },
@@ -23,7 +22,7 @@ const columns = ref<IColumn[]>([
         :data="playerStore.favorites"
         :columns="columns"
         :onFavorite="playerStore.setFavoritePlayer"
-        :onDelete="confirmDelete"
+        :onDelete="playerStore.removePlayer"
         :isLoading="playerStore.isLoading"
       />
     </div>
