@@ -8,8 +8,8 @@ import type { IPlayer } from '@/models/player'
 
 const players = ref<IPlayer[]>([])
 
-const { setPlayers, setFavoritePlayer } = usePlayersStore()
-const { fetchData, confirmDelete, isLoading, isRemoving } = usePlayer()
+const { setPlayers, removePlayer, setFavoritePlayer } = usePlayersStore()
+const { fetchData, isLoading, isRemoving } = usePlayer()
 
 const columns = ref<IColumn[]>([
   { label: 'Name', field: 'full_name', sortable: true },
@@ -17,6 +17,11 @@ const columns = ref<IColumn[]>([
   { label: 'Team', field: 'team.full_name', sortable: true },
   { label: 'Position', field: 'position', sortable: true },
 ])
+
+const handleDelete = async (playerId) => {
+  const response = await removePlayer(playerId)
+  players.value = response
+}
 
 onMounted(async () => {
   const playersData = await fetchData()
@@ -33,7 +38,7 @@ watch(players, (update) => setPlayers(update))
         :data="players"
         :columns="columns"
         :onFavorite="setFavoritePlayer"
-        :onDelete="confirmDelete"
+        :onDelete="handleDelete"
         :isLoading="isLoading"
         :isRemoving="isRemoving"
       />

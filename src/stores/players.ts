@@ -30,5 +30,12 @@ export const usePlayersStore = defineStore('players', {
       const exists = this.favorites.some((player) => player.id === item.id)
       return exists
     },
+    removePlayer(playerId: number): Promise<IPlayer[]> {
+      return new Promise((resolve) => {
+        const updatedPlayers = this.players.filter((item) => item.id !== playerId)
+        this.setPlayers(updatedPlayers)
+        resolve(updatedPlayers)
+      })
+    },
   },
 })
