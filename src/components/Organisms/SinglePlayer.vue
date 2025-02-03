@@ -14,8 +14,7 @@ import FormField from '@/components/Molecules/FormField.vue'
 import SkeletonSinglePlayer from '@/components/Skeletons/SinglePlayer.vue'
 
 const route = useRoute()
-const { updatePlayer } = usePlayersStore()
-const { getPlayer, isLoading, isSaving } = usePlayer()
+const { getPlayer, updatePlayer, isLoading, isSaving } = usePlayer()
 
 const player = ref<IPlayer | null>(null)
 const playerForm = ref<HTMLFormElement | null>(null)

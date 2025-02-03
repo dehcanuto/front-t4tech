@@ -31,6 +31,11 @@ class NbaService {
     const response = await api.get(`/players/${id}`)
     return response.data
   }
+
+  async updatePlayer(player: IPlayer): Promise<IPlayer> {
+    const response = await api.put(`/players/${player.id}`, { player })
+    return response.data
+  }
 }
 
 export const nbaService = new NbaService()

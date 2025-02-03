@@ -276,6 +276,8 @@ app.get('/players/:id', (req, res) => {
 // Update Player
 app.put('/players/:id', (req, res) => {
   const { id } = req.params
+  const { player } = req.body
+
   const {
     first_name,
     last_name,
@@ -288,8 +290,8 @@ app.put('/players/:id', (req, res) => {
     draft_year,
     draft_round,
     draft_number,
-    team_id,
-  } = req.body
+    team,
+  } = player
 
   db.run(
     `UPDATE players
@@ -308,7 +310,7 @@ app.put('/players/:id', (req, res) => {
       draft_year,
       draft_round,
       draft_number,
-      team_id,
+      team.id,
       id,
     ],
     function (err) {
@@ -321,6 +323,26 @@ app.put('/players/:id', (req, res) => {
       res.json({ message: 'Player updated successfully!' })
     },
   )
+})
+
+// Delete Player
+app.delete('/players/:id', (req, res) => {
+  const { id } = req.params
+
+  const query = 'DELETE FROM players WHERE id = ?'
+
+  db.run(query, [id], function (err) {
+    if (err) {
+      console.error('Erro ao remover jogador:', err.message)
+      return res.status(500).json({ message: 'Erro ao remover jogador', data: err.message })
+    }
+
+    if (this.changes === 0) {
+      return res.status(404).json({ message: 'Jogador não encontrado' })
+    }
+
+    return res.status(200).json({ message: `Jogador com id ${id} foi removido com sucesso!` })
+  })
 })
 
 // List Players

@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
 
 import { nbaService } from '@/api/nba'
+import type { IPlayer } from '@/models/player'
 
 const toast = useToast()
 
@@ -39,11 +40,26 @@ export function usePlayer() {
     }
   }
 
+  const updatePlayer = async (player: IPlayer) => {
+    try {
+      isLoading.value = true
+      const response = await nbaService.updatePlayer(player)
+      toast.success('Player updated successfully')
+      return response
+    } catch (error) {
+      console.log('error', error)
+      toast.error('Something went wrong. Try again later')
+    } finally {
+      isLoading.value = false
+    }
+  }
+
   return {
     isLoading,
     isRemoving,
     isSaving,
     fetchData,
     getPlayer,
+    updatePlayer,
   }
 }
