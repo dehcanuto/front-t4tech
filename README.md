@@ -49,7 +49,7 @@ Utilizando a API pública da 🏀 [NBA balldontlie API](https://www.balldontlie.
 
 ### Bônus
 
-- [ ] Utilizar SQLITE para armazenar tudo localmente;
+- [x] Utilizar SQLITE para armazenar tudo localmente;
 - [x] Criar simulações e padrões para mensagens de erro da API;
 - [x] Utilizar DOCKER no projeto.
 
