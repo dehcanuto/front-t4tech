@@ -37,7 +37,7 @@ Pode utilizar um starter para o layout.
 
 ### Tarefas
 
-Utilizando a API pública da [NBA balldontlie API](https://www.balldontlie.io/), faça um CRUD simples:
+Utilizando a API pública da 🏀 [NBA balldontlie API](https://www.balldontlie.io/), faça um CRUD simples:
 
 - [x] Exiba todos os jogadores dentro de uma datatable;
   - [x] Deve conter um campo de busca dinâmico para filtrar;
