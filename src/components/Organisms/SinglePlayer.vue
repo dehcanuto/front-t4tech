@@ -111,11 +111,7 @@ onMounted(() => {
           <FormField label="Height" v-model="form.height" />
           <FormField label="Weight" v-model="form.weight" />
           <FormField label="Position" v-model="form.position" />
-          <FormField
-            label="Jersey Number"
-            v-model="form.jersey_number"
-            placeholder="Jersey Number"
-          />
+          <FormField label="Jersey Number" v-model="form.jersey_number" />
           <FormField label="College" v-model="form.college" />
           <FormField label="Draft Year" v-model="form.draft_year" />
           <FormField label="Draft Round" v-model="form.draft_round" />

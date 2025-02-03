@@ -24,6 +24,7 @@ defineProps<{
       :type="type"
       :placeholder="placeholder"
       :disabled="disabled"
+      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     />
   </div>
 </template>
