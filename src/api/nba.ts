@@ -37,7 +37,7 @@ class NbaService {
     return response.data
   }
 
-  async removePlayer(playerId: number): Promise<IPlayer> {
+  async removePlayer(playerId: number): Promise<IPlayer[]> {
     await api.delete(`/players/${playerId}`)
     const response = await api.get('/players')
     return response.data

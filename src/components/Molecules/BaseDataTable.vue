@@ -13,7 +13,7 @@ import type { IColumn } from '@/models/table'
 
 const props = defineProps({
   data: {
-    type: Array as () => IPlayer[],
+    type: Array as () => IPlayer[] | undefined,
     required: true,
   },
   columns: {
@@ -41,7 +41,7 @@ const props = defineProps({
 const showModal = ref(false)
 const selectedId = ref<number | null>(null)
 const searchTerm = ref('')
-const players = ref<IPlayer[]>(props.data)
+const players = ref<IPlayer[]>(props.data ?? [])
 
 const filteredData = computed(() => filterData(players.value, searchTerm.value))
 
@@ -63,7 +63,7 @@ const updatePlayers = (update: IPlayer[]) => {
 watch(
   () => props.data,
   (update) => {
-    players.value = update
+    players.value = update ?? []
   },
   { immediate: true },
 )
@@ -83,7 +83,7 @@ watch(
       class="table-auto border-collapse container w-full m-auto border-2 border-gray-800 shadow rounded"
     >
       <thead class="bg-gray-800 text-gray-400">
-        <tr class="text-sm font-medium text-left" style="font-size: 0.9674rem">
+        <tr v-if="data" class="text-sm font-medium text-left" style="font-size: 0.9674rem">
           <th
             v-for="col in columns"
             :key="col.field"
