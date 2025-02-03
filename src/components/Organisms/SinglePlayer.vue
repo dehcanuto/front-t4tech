@@ -3,7 +3,6 @@ import { ref, reactive, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { ChevronLeftIcon, FingerPrintIcon, UsersIcon } from '@heroicons/vue/24/outline'
 
-import { resolveNestedValue } from '@/utils/nestedValues'
 import { usePlayersStore } from '@/stores/players'
 import { usePlayer } from '@/composables/usePlayer'
 import type { IPlayer, IPlayerEditForm } from '@/models/player'
@@ -81,7 +80,7 @@ onMounted(() => {
         </RouterLink>
         <div class="flex items-center gap-2">
           <h1 v-if="player" class="text-2xl text-white">
-            {{ resolveNestedValue(player, 'full_name') }}
+            {{ player.first_name }} {{ player.last_name }}
           </h1>
           <FavoriteButton :player="player" />
         </div>
