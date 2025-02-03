@@ -57,4 +57,5 @@ export const usePlayersStore = defineStore('players', {
       })
     },
   },
+  persist: true,
 })

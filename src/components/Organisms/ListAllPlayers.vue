@@ -6,10 +6,10 @@ import BaseDataTable from '@/components/Molecules/BaseDataTable.vue'
 import type { IColumn } from '@/models/table'
 import type { IPlayer } from '@/models/player'
 
-const players = ref<IPlayer[]>([])
-
-const { setPlayers, removePlayer, setFavoritePlayer } = usePlayersStore()
+const { players, setPlayers, removePlayer, setFavoritePlayer } = usePlayersStore()
 const { fetchData, isLoading, isRemoving } = usePlayer()
+
+const dataPlayers = ref<IPlayer[]>(players)
 
 const columns = ref<IColumn[]>([
   { label: 'Name', field: 'full_name', sortable: true },
@@ -18,26 +18,32 @@ const columns = ref<IColumn[]>([
   { label: 'Position', field: 'position', sortable: true },
 ])
 
-const handleDelete = async (playerId) => {
+const handleDelete = async (playerId: number) => {
   const response = await removePlayer(playerId)
-  players.value = response
+  dataPlayers.value = response
 }
 
 onMounted(async () => {
-  if (players.value.length === 0) {
-    const playersData = await fetchData()
-    if (playersData) players.value = playersData
+  if (dataPlayers.value.length === 0) {
+    const response = await fetchData()
+    if (response) dataPlayers.value = response
   }
 })
 
-watch(players, (update) => setPlayers(update))
+watch(
+  dataPlayers,
+  (newPlayers) => {
+    setPlayers([...newPlayers])
+  },
+  { deep: true },
+)
 </script>
 
 <template>
   <div class="pb-4 px-4 rounded-md w-full">
     <div class="overflow-x-auto mt-6">
       <BaseDataTable
-        :data="players"
+        :data="dataPlayers"
         :columns="columns"
         :onFavorite="setFavoritePlayer"
         :onDelete="handleDelete"

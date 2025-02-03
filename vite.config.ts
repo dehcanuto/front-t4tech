@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
       __APP_ENV__: JSON.stringify(env.APP_ENV),
     },
     server: {
+      historyApiFallback: true,
       proxy: {
         '/api': {
           target: env.VITE_API_BASE_URL,

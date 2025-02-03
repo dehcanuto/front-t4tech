@@ -62,7 +62,8 @@ const fetchPlayer = async () => {
 }
 
 const handleSubmit = async () => {
-  await updatePlayer(form)
+  if (!player.value) return
+  await updatePlayer({ ...form, id: player.value.id, team: player.value.team })
 }
 
 onMounted(() => {
